@@ -1,0 +1,19 @@
+{
+  "name": "carousel-comparousel",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "https://github.com/swashcap/carousel-comparousel.git",
+  "author": "Cory Reed",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.7",
+    "prettier": "^2.0.5"
+  },
+  "scripts": {
+    "format": "prettier --write '*.js' 'src/**/*.{ts,tsx}'"
+  }
+}
