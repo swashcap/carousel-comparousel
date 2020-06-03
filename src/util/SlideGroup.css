@@ -1,0 +1,6 @@
+.carcom-slide-group {
+  display: flex;
+}
+.carcom-slide-group > * {
+  width: 25%;
+}

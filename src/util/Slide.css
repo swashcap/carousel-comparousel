@@ -1,0 +1,36 @@
+.carcom-slide {
+  box-sizing: border-box;
+  font-family: sans-serif;
+  line-height: 1carcom-25;
+  padding: 0.5rem;
+}
+.carcom-slide a {
+  color: inherit;
+  display: block;
+  text-decoration: none;
+}
+.carcom-slide a:focus,
+.carcom-slide a:hover,
+.carcom-slide a:focus .carcom-slide-info,
+.carcom-slide a:hover .carcom-slide-info {
+  color: royalblue;
+}
+.carcom-slide a:active,
+.carcom-slide a:active .carcom-slide-info {
+  color: mediumblue;
+}
+.carcom-slide-image {
+  display: block;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+.carcom-slide-title {
+  font-size: 112.5%;
+  font-weight: 500;
+  line-height: 1;
+  margin: 0 0 0.5rem;
+}
+.carcom-slide-info {
+  color: darkslategray;
+  margin: 0;
+}
