@@ -4,6 +4,7 @@ const path = require('path');
 const fs = require('fs/promises');
 
 const isProdEnv = process.env.NODE_ENV === 'production';
+const extensions = ['.tsx', '.ts', '.jsx', '.js', '.json'];
 
 module.exports = async () => {
   const files = await fs.readdir(path.join(__dirname, 'src'));
@@ -13,7 +14,10 @@ module.exports = async () => {
 
   const entries = files
     .map((file, index) => [file, stats[index]])
-    .filter(([, stats]) => stats.isFile())
+    .filter(
+      ([file, stats]) =>
+        stats.isFile() && extensions.includes(path.extname(file))
+    )
     .reduce(
       (memo, [file]) => ({
         ...memo,
@@ -28,6 +32,10 @@ module.exports = async () => {
 
   return Object.keys(entries).map((key) => ({
     entry: entries[key],
+    externals: isProdEnv && {
+      react: 'React',
+      'react-dom': 'ReactDOM',
+    },
     mode: isProdEnv ? 'production' : 'development',
     module: {
       rules: [
@@ -67,11 +75,15 @@ module.exports = async () => {
           charset: 'utf-8',
           viewport: 'width=device-width, initial-scale=1',
         },
+        template: path.join(__dirname, 'src/template.ejs'),
+        templateParameters: {
+          NODE_ENV: isProdEnv ? 'production' : 'development',
+        },
         title: 'Carousel Comparousel',
       }),
     ],
     resolve: {
-      extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
+      extensions,
     },
   }));
 };
