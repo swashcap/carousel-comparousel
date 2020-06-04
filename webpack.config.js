@@ -69,7 +69,10 @@ module.exports = async () => {
       path: path.join(__dirname, 'dist', key),
     },
     plugins: [
-      new MiniCSSExtractPlugin(),
+      new MiniCSSExtractPlugin({
+        chunkFile: isProdEnv ? '[id].[contenthash].css' : '[id].css',
+        filename: isProdEnv ? '[name].[contenthash].css' : '[name].css',
+      }),
       new HTMLWebpackPlugin({
         meta: {
           charset: 'utf-8',
